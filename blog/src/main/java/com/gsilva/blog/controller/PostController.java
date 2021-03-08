@@ -16,8 +16,12 @@ import com.gsilva.blog.service.PostService;
 @Controller
 public class PostController {
 
+	private final PostService postService;
+
 	@Autowired
-	private PostService postService;
+	public PostController(PostService postService) {
+		this.postService = postService;
+	}
 
 	@GetMapping("/")
 	public ModelAndView findAll() {
