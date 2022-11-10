@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-
-import static java.text.MessageFormat.format;
 
 @Service
 public class PostService {
@@ -29,18 +26,18 @@ public class PostService {
 	}
 
 	public Post findOne(long id) {
-		Optional<Post> post = postRepository.findById(id);
-		return post.orElseThrow(() -> new RuntimeException("O Post não existe"));
+		return postRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("O Post não existe"));
 	}
 
 	public void save(Post post) {
-		LOG.info(format("Publicando post '{0}' por {1}", post.getTitulo(), post.getAutor()));
+		LOG.info("Publicando post '{}' por {}", post.getTitulo(), post.getAutor());
 		postRepository.save(post);
 	}
 
 	public void delete(Long id) {
 		Post post = findOne(id);
-		LOG.info(format("Deletando post {}", post.getId()));
+		LOG.info("Deletando post {}", post.getId());
 		postRepository.delete(post);
 	}
 }

@@ -40,20 +40,40 @@ public class Post implements Serializable {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getAutor() {
         return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public String getTexto() {
         return texto;
     }
 
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
     public Date getData() {
         return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
     @Override
@@ -63,26 +83,15 @@ public class Post implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((autor == null) ? 0 : autor.hashCode());
-        result = prime * result + ((data == null) ? 0 : data.hashCode());
-        result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((texto == null) ? 0 : texto.hashCode());
-        result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
-        return result;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Post post = (Post) o;
+        return id == post.id;
+    }
 
-        if (id != post.id) return false;
-        if (!autor.equals(post.autor)) return false;
-        return titulo.equals(post.titulo);
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
 }
