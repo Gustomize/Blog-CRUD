@@ -1,20 +1,18 @@
 version: "3.7"
 services:
-  api_service:
-    build: .
-    restart: always
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres_db
-    links:
-      - postgres_db:database
   postgres_db:
     image: postgres:latest
+    container_name: database
     restart: always
+    networks:
+      - blog
     ports:
       - "5432:5432"
     environment:
       POSTGRES_DB: blog
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
+
+networks:
+  blog:
+    driver: bridge

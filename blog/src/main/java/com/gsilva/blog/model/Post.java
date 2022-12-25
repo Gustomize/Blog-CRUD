@@ -2,11 +2,19 @@ package com.gsilva.blog.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity(name = "tbl_post")
 public class Post implements Serializable {
@@ -78,20 +86,23 @@ public class Post implements Serializable {
 
     @Override
     public String toString() {
-        return "Post [id=" + getId() + ", autor=" + getAutor() + ", titulo=" + getTitulo() + ", texto=" + getTexto()
-                + ", data=" + getData() + "]";
+        final StringBuilder sb = new StringBuilder("Post{");
+        sb.append("id=").append(id);
+        sb.append(", autor='").append(autor).append('\'');
+        sb.append(", titulo='").append(titulo).append('\'');
+        sb.append(", texto='").append(texto).append('\'');
+        sb.append(", data=").append(data);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Post post = (Post) o;
-        return id == post.id;
+        return Objects.equals(this, o);
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return Objects.hash(id);
     }
 }
