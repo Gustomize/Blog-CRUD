@@ -16,10 +16,9 @@ dados postgres.
 
 ## Rotas
 
-|      Rota      |                  Função                 |
-|:--------------:|:---------------------------------------:|
-|      `/`       |        Tela inicial da aplicação        |
-|     `/add`     | Abre formulário para o cadastro do post |
-|  `/edit/{id}`  |  Abre formulário para o edição do post  |
-| `/delete/{id}` |       Deleta o post da base dados       |
-|    `/save`     |   Salva as alterações na base de dados  |
+| Método |      Rota      |                  Função                 |
+|:------:|:--------------:|:---------------------------------------:|
+|  GET   |      `/`       |        Tela inicial da aplicação        |
+|  GET   |     `/add`     | Abre formulário para o cadastro do post |
+|  GET   |  `/edit/{id}`  |  Abre formulário para o edição do post  |
+|  GET   | `/delete/{id}` |       Deleta o post da base dados       |
