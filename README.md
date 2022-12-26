@@ -32,6 +32,31 @@ dados postgres.
 
 ## Como rodar a aplicação
 
+Criar o arquivo docker-compose:
+
+```yaml
+version: "3.7"
+services:
+  postgres_db:
+    image: postgres:latest
+    container_name: database
+    restart: always
+    networks:
+      - blog
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+
+networks:
+  blog:
+    driver: bridge
+```
+
+Rodar os seguintes comandos
+
 ```shell
 docker pull gustosilva/blog-app
 
